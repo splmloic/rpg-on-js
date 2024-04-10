@@ -3,6 +3,24 @@ class Character{
         this.hp = hp;
         this.dmg = dmg;
         this.mana = mana;
+        this.status = "Playing";
+    }
+    takeDamage(attacker,victim){
+        if(victim.hp > 0){
+            console.log(`Aïe, ça pique ! ${victim.name} recoit -${attacker.dmg} points de dommages de la part de ${attacker.name}`);
+            victim.hp -= attacker.dmg;
+            if(victim.hp <= 0){
+                console.log(`ouie ${victim.name} a été tué par ${attacker.name}, ${attacker.name} gagne 20pts de mana`)
+                victim.status = "Looser";
+                attacker.mana += 20;  
+            }
+        }else{
+            console.log(`${victim.name} est deja a 0 point de vie`);
+        }
+    }
+
+    dealDamage(victim){
+        this.takeDamage(this,victim);
     }
 }
 
@@ -12,7 +30,8 @@ class Fighter extends Character{
         super(12,4,40);
         this.name = name;
     }
-    HealingLighting(){
+
+    DarkVision(){
         //infligeant 5 dégâts. Lors du prochain tour, il prendra 2 dégâts de moins par coup reçu. Elle coute 20 mana
     }
 }
@@ -61,13 +80,3 @@ class Assassin extends Character{
     }
 }
 
-//Grace sera le personnage de la classe Fighter
-const one = new Fighter("Grace");
-//Ulder sera le personnage de la classe Paladin
-const two = new Paladin("Ulder");
-//Moana sera le personnage de la classe Monk
-const tree = new Monk("Moana");
-//Draven sera le personnage de la classe Berzerker
-const four = new Berzerker("Draven");
-//Carl sera le personnage de la classe Assassin
-const five = new Assassin("Carl");
