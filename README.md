@@ -22,10 +22,14 @@ Ce projet de Minimal RPG est développé en JavaScript et est conçu pour être 
 - Le jeu gère automatiquement les tours, les attaques des joueurs et des ennemis, et détermine le gagnant à la fin du jeu.
 - Le jeu offre des options d'attaques spéciales en fonction du type de personnage et des ressources disponibles (points de mana, etc.) selon un jet de dès à 6 faces.
 
-## Développement et Contribution
+## Développement
 
 - Clonez ce dépôt localement pour contribuer ou tester le jeu.
 - Vous pouvez ajouter de nouveaux types de personnages, des attaques spéciales, ou améliorer la logique de jeu dans les fichiers existants.
+
+## Idées futures
+
+- Ajouter une version manuelle pour jouer tour a tour via la page `index.html`.
 
 ---
 
