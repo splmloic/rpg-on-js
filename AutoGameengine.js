@@ -36,32 +36,34 @@ class AutoGame{
             if (enemies.length === 0) return; // No valid enemy to attack
             let enemyIndex = Math.floor(Math.random() * enemies.length);
             let enemy = enemies[enemyIndex];
-    
-            console.log(`C'est à ${attacker.name} de jouer. Son dès affiche ${Rolldice}. Il va attaquer ${enemy.name}`);
-            if(Rolldice === 6){
-                if(attacker instanceof Fighter && attacker.mana >= 20){
-                    attacker.DarkVision(enemy);
-                }else if(attacker instanceof Paladin && attacker.mana >= 40){
-                    attacker.HealingLighting(enemy);
-                }else if(attacker instanceof Monk && attacker.mana >= 25){
-                    attacker.Heal();
-                }else if(attacker instanceof Berzerker){
-                    attacker.Rage();
-                }else if(attacker instanceof Assassin && attacker.mana >= 20 && attacker.shadowCount === 0){
-                    attacker.ShadowHitAttack(enemy);
-                }else if(attacker instanceof Wizard && attacker.mana >= 25){
-                    attacker.Fireball(enemy);
-                }else if(attacker instanceof Soldier && attacker.mana >= 25){
-                    attacker.feast();
+            if(attacker.hp >0){
+                console.log(`C'est à ${attacker.name} de jouer. Son dès affiche ${Rolldice}. Il va attaquer ${enemy.name}`);
+                if(Rolldice === 6){
+                    if(attacker instanceof Fighter && attacker.mana >= 20){
+                        attacker.DarkVision(enemy);
+                    }else if(attacker instanceof Paladin && attacker.mana >= 40){
+                        attacker.HealingLighting(enemy);
+                    }else if(attacker instanceof Monk && attacker.mana >= 25){
+                        attacker.Heal();
+                    }else if(attacker instanceof Berzerker){
+                        attacker.Rage();
+                    }else if(attacker instanceof Assassin && attacker.mana >= 20 && attacker.shadowCount === 0){
+                        attacker.ShadowHitAttack(enemy);
+                    }else if(attacker instanceof Wizard && attacker.mana >= 25){
+                        attacker.Fireball(enemy);
+                    }else if(attacker instanceof Soldier && attacker.mana >= 25){
+                        attacker.feast();
+                    }
+                }else{
+                    attacker.dealDamage(enemy);
                 }
-            }else{
-                attacker.dealDamage(enemy);
-            }
-            if (enemy.hp <= 0) {
-                enemy.status = "Losser"; 
+                if (enemy.hp <= 0) {
+                    enemy.status = "Losser"; 
+                }
             }
         });
         console.log("Fin du tour.");
+        console.log("------------------");
         this.watchStats();
         this.skipTurn();
         console.log("------------------");
