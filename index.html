@@ -6,15 +6,50 @@
     <title>RPG</title>
 </head>
 <body>
-    <script src="Gameengine.js"></script>
-    <script src="lib/Character.js"></script>    
-    <script src="lib/assasin.js"></script>
-    <script src="lib/berzerker.js"></script>
-    <script src="lib/fighter.js"></script>
-    <script src="lib/monk.js"></script>
-    <script src="lib/paladin.js"></script>
-    <script src="lib/wizard.js"></script>
-    <script src="lib/soldier.js"></script>
-    <script src="Game.js"></script>
+    <select id="scriptSelector">
+        <option value="autoscript">jeu automatique</option>
+        <option value="manualscript">jeu manuel</option>
+        <!-- Ajoutez d'autres options selon vos besoins -->
+      </select>
+    <button onclick="loadScript()">Charger le script</button>
 </body>
+<script src="AutoGameengine.js"></script>
+<script src="lib/Character.js"></script>    
+<script src="lib/assasin.js"></script>
+<script src="lib/berzerker.js"></script>
+<script src="lib/fighter.js"></script>
+<script src="lib/monk.js"></script>
+<script src="lib/paladin.js"></script>
+<script src="lib/wizard.js"></script>
+<script src="lib/soldier.js"></script>
+<script src="AutoGame.js"></script>
+
+<script>
+function loadScript() {
+    const scriptSelector = document.getElementById("scriptSelector");
+    const selectedScript = scriptSelector.value;
+
+    if (selectedScript === "autoscript") {
+        loadMultipleScripts(["AutoGameengine.js", "AutoGame.js"]);
+    } else {
+        loadSingleScript(selectedScript);
+    }
+}
+
+function loadSingleScript(scriptName) {
+    const scriptElement = document.createElement("script");
+    scriptElement.src = scriptName;
+
+    scriptElement.onload = function() {
+    console.log(`${scriptName} chargé.`);
+    };
+    document.head.appendChild(scriptElement);
+}
+
+function loadMultipleScripts(scriptList) {
+    scriptList.forEach(scriptName => {
+    loadSingleScript(scriptName);
+    });
+}
+</script>
 </html>

@@ -9,7 +9,7 @@ const four = new Berzerker("Draven");
 //Carl sera le personnage de la classe Assassin
 const five = new Assassin("Carl");
 
-const jeu = new Game();
+const jeu = new AutoGame();
 
 jeu.AddPlayer(one);
 jeu.AddPlayer(two);
